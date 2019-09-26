@@ -40,8 +40,13 @@ namespace User_Management
             con.Open();
             MySqlCommand cmd = new MySqlCommand("SELECT * FROM user WHERE username='" + textBox1.Text + "'AND password='" + textBox2.Text + "' ", con);
             MySqlDataReader leer = cmd.ExecuteReader();
-            if (leer.Read()) //Si el usuario es correcto nos abrira la otra ventana.
-                MessageBox.Show("Succes - Inicio de Sesión Completado");
+            if (leer.Read()){ //Si el usuario es correcto nos abrira la otra ventana.
+                //MessageBox.Show("Succes - Inicio de Sesión Completado");
+                con.Close();
+                this.Hide();
+                Form2 ss = new Form2();
+                ss.Show();
+            }
             else
                 MessageBox.Show("Error - Ingrese sus datos correctamente");
             con.Close();
